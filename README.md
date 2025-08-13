@@ -17,21 +17,20 @@ The output of the simulation is a ROOT file with two TTrees:
   KEY: TTree	EDepSimEvents;1	Energy Deposition for Simulated Events
 ```
 
-The CENNS Event Tree contains one branch storing the class CENNSEvent. The header can be found in
+The CENNS Event Tree contains two branches. The first branch stores and instance of the class CENNSEvent. The header can be found in `cenns/io/CENNSEvent.hh`. The `CENNSEvent` class stores generator info for single particle generators for now. 
+(TODO: expand this to be more general about the generated events.)
+The `CENNSEvent` class might also store the detected photons for each PMT (this can be toggled on and off by the sim's macro).
+This information is in the  `std::vector<CENNSChannel> CENNSEvent::fvChannel` class member.
 
-    `cenns/io/CENNSEvent.hh`.
+The second branch stores a vector of `cenns::io::CENNSDAQ` objects: `vector<cenns::io::CENNSDAQ>`. 
+There is a DAQ class for each daq workflow defined. Typically this is just for the PMT waveforms inside the LAr volume. 
+In the future, this might include a simulation of the veto panels.
 
-The `CENNSEvent` class stores generator info for single particle generators for now. TODO: expand this to be more general about the generated events.
-The `CENNSEvent` class also stores the output of the DAQ model in the class member container
+For the `EDepSimEvents` TTree, there is only a single branch. 
+The branch holds an instance of the `TG4Event` class. 
+The header for this class can be found at `cenns/io/TG4Event.h`.
 
-    `std::vector<CENNSChannel> fvChannel;`
-
-
-The `EDepSimEvents` TTree also is a single-branch tree storing the `TG4Event` class. The header for this class can be found at
-
-   `cenns/io/TG4Event.h`
-
-This class keeps three member containers:
+The `TG4Event` class keeps three member containers:
 
    1. `TG4PrimaryVertexContainer Primaries`: stores info about the primary particles
    2. `TG4TrajectoryContainer Trajectories`: stores particle trajectories
@@ -40,5 +39,7 @@ This class keeps three member containers:
 ## Parsers
 
 We store parsers for various analyses in this repository.
+
+  * `flatten_edep_info`: in `src/flatten_edep_info/`. This parses the `TG4HitSegmentDetectors` container and sums the energy deposited within a given  list of physical volumes. Note that these volumes must have been indicated as senstivie detector volumes in the sim's macro.
 
 

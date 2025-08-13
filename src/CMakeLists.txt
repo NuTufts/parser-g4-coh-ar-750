@@ -1,0 +1,1 @@
+add_subdirectory(flatten_edep_info)
