@@ -1,0 +1,14 @@
+# Example volumes file for flatten_edep_info
+# Lines starting with # are comments and will be ignored
+# Each line should contain one volume name
+
+# Main detector volumes
+LAr
+
+# Veto Panels
+TopPanel0
+
+pvVetoInner1
+pvVetoInner2
+pvVetoInner3
+pvVetoInner4
