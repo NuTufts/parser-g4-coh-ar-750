@@ -227,8 +227,9 @@ int main( int nargs, char** argv )
 
                 for (const auto& segment : segments) {
 
-                    // for debug
-                    //std::cout << "  [" << segment.PVname << ":" << segment.VolIDname << "] " << segment.GetEnergyDeposit() << std::endl;
+                    // for debug: uncomment line below to get dump of volume names of edep segments
+		    // std::cout << "  [" << segment.PVname << ":" << segment.VolIDname << "] " << segment.GetEnergyDeposit() << std::endl;
+		    
                     auto it_voledep = volume_edep.find(segment.PVname);
                     if ( it_voledep!=volume_edep.end()) {
                         it_voledep->second += segment.GetEnergyDeposit();

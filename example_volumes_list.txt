@@ -3,11 +3,11 @@
 # Each line should contain one volume name
 
 # Main detector volumes
-LAr
+pvLAr
 
 # Veto Panels
 TopPanel0
-
+BotPanel0
 pvVetoInner1
 pvVetoInner2
 pvVetoInner3
